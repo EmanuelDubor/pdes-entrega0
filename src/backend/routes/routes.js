@@ -6,11 +6,11 @@ const router = express.Router()
 
 router.param('someNew', (req, res, next, value) => {
     Post.findById(req.params.someNew)
-        .then(someNew => {
-            if (!someNew) {
+        .then(foundNew => {
+            if (!foundNew) {
                 throw new Error(`Cannot find new: ${value}`)
             }
-            req.someNew = someNew
+            req.someNew = foundNew
             next()
         })
         .catch(next)
@@ -25,13 +25,13 @@ router.get('/news', (req, res, next) => {
 router.post('/news', (req, res, next) => {
     const someNew = new Post(req.body)
     someNew.save()
-        .then(someNew => res.json(someNew.id))
+        .then(savedNew => res.json(savedNew.id))
         .catch(next)
 })
 
 router.get('/news/:someNew', (req, res, next) => {
     req.someNew.populate('comments').execPopulate()
-        .then(someNew => res.json(someNew))
+        .then(populatedNew => res.json(populatedNew))
         .catch(next)
 })
 
@@ -39,7 +39,7 @@ router.put('/news/:someNew/upvote', (req, res, next) => {
     const someNew = req.someNew
     someNew.upvote()
     someNew.save()
-        .then(someNew => res.json(someNew))
+        .then(savedNew => res.json(savedNew))
         .catch(next)
 })
 
