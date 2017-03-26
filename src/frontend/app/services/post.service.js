@@ -12,7 +12,7 @@ export default class PostService {
     }
 
     get posts() {
-        return this._posts
+        return this._posts;
     }
 
     create(post) {
@@ -20,6 +20,11 @@ export default class PostService {
             .toPromise()
             .then(response => this._posts.push(post))
             .catch(err => console.log(err))
+    }
+
+    getPost(id) {
+        return this.http.get(`/news/${id}`).toPromise()
+            .then(response => response.json());
     }
 }
 PostService.parameters = [

@@ -10,9 +10,8 @@ import PostService from "../services/post.service";
             <input [(ngModel)]="data.title" placeholder="Titulo" name="title">
             <textarea [(ngModel)]="data.content" placeholder="Contenido" name="content"></textarea>
 
-            <button type="button" (click)="onSubmit()">Crear Noticia</button>
-            <form>
-    `
+            <button type="button" (click)="onSubmittt()">Crear noticia</button>
+        </form>`
 })
 export default class NewPostComponent {
     constructor(postService) {
@@ -20,8 +19,8 @@ export default class NewPostComponent {
         this.postService = postService
     }
 
-    onSubmit() {
-        this.postService.create(data)
+    onSubmittt() {
+        this.postService.create(this.data)
         this.data = {}
     }
 }
