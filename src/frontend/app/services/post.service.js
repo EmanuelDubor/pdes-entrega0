@@ -1,13 +1,14 @@
 import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
 
 @Injectable()
 export default class PostService {
-    constructor() {
-        this._posts = [
-            {title: 'Noticia 1', content: 'Contenido 1', author: 'Claudio', upvotes: 1},
-            {title: 'Noticia 2', content: 'Contenido 2', author: 'Claudio', upvotes: 3},
-            {title: 'Noticia 3', content: 'Contenido 3', author: 'Claudio', upvotes: 0}
-        ]
+    constructor(http) {
+        this.http = http
+        this._posts = []
+        this.http.get("/news").toPromise()
+            .then(response => this._posts.push(...response.json()))
+            .catch(err => console.log(err))
     }
 
     get posts() {
@@ -15,6 +16,12 @@ export default class PostService {
     }
 
     create(post) {
-        this._posts.push(post)
+        this.http.post("/news", JSON.stringify(post), {headers: {'Content-Type': 'application/json'}})
+            .toPromise()
+            .then(response => this._posts.push(post))
+            .catch(err => console.log(err))
     }
 }
+PostService.parameters = [
+    Http
+]
