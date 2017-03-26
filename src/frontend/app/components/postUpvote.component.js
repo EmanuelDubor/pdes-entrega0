@@ -8,7 +8,7 @@ import PostService from "../services/post.service";
         <button type="button" (click)="upvote()">Me gusta!</button>
     `
 })
-export default class PostDetailComponent {
+export default class PostUpvoteComponent {
     constructor(route, postService) {
         this.route = route
         this.postService = postService
@@ -24,6 +24,6 @@ export default class PostDetailComponent {
     }
 }
 
-PostDetailComponent.parameters = [
+PostUpvoteComponent.parameters = [
     ActivatedRoute, PostService
 ]

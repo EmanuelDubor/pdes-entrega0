@@ -22,16 +22,22 @@ export default class PostService {
             .catch(err => console.log(err))
     }
 
-    getPost(id) {
-        return this.http.get(`/news/${id}`).toPromise()
+    addComment(postId, comment) {
+        return this.http.post(`/news/${postId}/comment`, JSON.stringify(comment), {headers: {'Content-Type': 'application/json'}})
+            .toPromise()
+            .then(response => this.updatePost(response.json()))
+            .catch(err => console.log(err))
+    }
+
+    getPost(postId) {
+        return this.http.get(`/news/${postId}`).toPromise()
             .then(response => response.json());
     }
 
     upvote(postId) {
         return this.http.put(`/news/${postId}/upvote`).toPromise()
-            .then(response => {
-                return this.updatePost(response.json())
-            })
+            .then(response => this.updatePost(response.json()))
+            .catch(err => console.log(err))
     }
 
     updatePost(updatedPost) {

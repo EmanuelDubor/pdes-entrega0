@@ -54,7 +54,7 @@ router.post('/news/:someNew/comments', (req, res, next) => {
             someNew.comments.push(comment)
             return someNew.save()
         })
-        .then(someNew => res.json(comment))
+        .then(someNew => res.json(someNew))
         .catch(next)
 })
 

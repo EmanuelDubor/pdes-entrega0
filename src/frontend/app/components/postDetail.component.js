@@ -10,7 +10,7 @@ import PostService from "../services/post.service";
         <postUpvote></postUpvote>
         <h2>Comentarios:</h2>
         <comment *ngFor="let comment of post.comments" [data]="comment"></comment>
-
+        <newComment></newComment>
         <a [routerLink]="['/news']">Atras</a>
     `
 })
