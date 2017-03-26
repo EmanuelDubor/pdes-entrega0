@@ -26,6 +26,21 @@ export default class PostService {
         return this.http.get(`/news/${id}`).toPromise()
             .then(response => response.json());
     }
+
+    upvote(postId) {
+        return this.http.put(`/news/${postId}/upvote`).toPromise()
+            .then(response => {
+                return this.updatePost(response.json())
+            })
+    }
+
+    updatePost(updatedPost) {
+        this._posts.forEach((post, index) => {
+            if (post.id == updatedPost.id)
+                this._posts[index] = updatedPost
+        })
+        return updatedPost
+    }
 }
 PostService.parameters = [
     Http

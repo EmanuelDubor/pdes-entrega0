@@ -7,7 +7,7 @@ import PostService from "../services/post.service";
     inputs: ['post'],
     template: `
         <post [data]="post"></post>
-
+        <postUpvote></postUpvote>
         <h2>Comentarios:</h2>
         <comment *ngFor="let comment of post.comments" [data]="comment"></comment>
 
@@ -25,8 +25,8 @@ export default class PostDetailComponent {
         this.route.params.subscribe(params => {
             this.postService.getPost(params.someNew)
                 .then(post => this.post = post)
-                .catch(e => console.log(e));
-        });
+                .catch(e => console.log(e))
+        })
     }
 }
 

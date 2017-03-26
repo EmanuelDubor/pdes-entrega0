@@ -15,6 +15,7 @@ import NewPostComponent from "./app/components/newPost.component";
 import PostDetailComponent from "./app/components/postDetail.component";
 import PostListComponent from "./app/components/postList.component";
 import CommentComponent from "./app/components/comment.component";
+import PostUpvoteComponent from "./app/components/postUpvote.component";
 
 let router = RouterModule.forRoot([
     {path: '', redirectTo: '/news', pathMatch: 'full'},
@@ -31,7 +32,8 @@ let router = RouterModule.forRoot([
         AppComponent,
         PostDetailComponent,
         PostListComponent,
-        CommentComponent
+        CommentComponent,
+        PostUpvoteComponent
     ],
     bootstrap: [AppComponent]
 })
