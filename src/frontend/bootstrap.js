@@ -12,6 +12,7 @@ import NewPostComponent from "./app/components/newPost.component";
 
 @NgModule({
     imports: [BrowserModule, FormsModule],
+    styleUrls: ['./style.css'],
     declarations: [
         AppComponent,
         PostComponent,
