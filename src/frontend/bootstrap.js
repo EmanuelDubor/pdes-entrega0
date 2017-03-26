@@ -7,18 +7,31 @@ import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import "rxjs/add/operator/toPromise";
+import {RouterModule} from "@angular/router";
 
 import AppComponent from "./app/components/app.component";
 import PostComponent from "./app/components/post.component";
 import NewPostComponent from "./app/components/newPost.component";
+import PostDetailComponent from "./app/components/postDetail.component";
+import PostListComponent from "./app/components/postList.component";
+import CommentComponent from "./app/components/comment.component";
+
+let router = RouterModule.forRoot([
+    {path: '', redirectTo: '/news', pathMatch: 'full'},
+    {path: 'news', component: PostListComponent},
+    {path: 'new/:someNew', component: PostDetailComponent}
+], {useHash: true})
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpModule],
+    imports: [router, BrowserModule, FormsModule, HttpModule],
     styleUrls: ['./style.css'],
     declarations: [
-        AppComponent,
         PostComponent,
-        NewPostComponent
+        NewPostComponent,
+        AppComponent,
+        PostDetailComponent,
+        PostListComponent,
+        CommentComponent
     ],
     bootstrap: [AppComponent]
 })

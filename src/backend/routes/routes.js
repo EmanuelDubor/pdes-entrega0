@@ -5,7 +5,7 @@ import Comment from "../models/Comment.js";
 const router = express.Router()
 
 router.param('someNew', (req, res, next, value) => {
-    Post.findById(req.params.someNew)
+    Post.findById(value)
         .then(foundNew => {
             if (!foundNew) {
                 throw new Error(`Cannot find new: ${value}`)
