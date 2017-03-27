@@ -34,8 +34,8 @@ export default class PostService {
             .then(response => response.json());
     }
 
-    upvote(postId) {
-        return this.http.put(`/news/${postId}/upvote`).toPromise()
+    upvote(post) {
+        return this.http.put(`/news/${post._id}/upvote`).toPromise()
             .then(response => this.updatePost(response.json()))
             .catch(err => console.log(err))
     }

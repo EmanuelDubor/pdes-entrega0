@@ -15,7 +15,7 @@ import NewPostComponent from "./app/components/newPost.component";
 import PostDetailComponent from "./app/components/postDetail.component";
 import PostListComponent from "./app/components/postList.component";
 import CommentComponent from "./app/components/comment.component";
-import PostUpvoteComponent from "./app/components/postUpvote.component";
+import UpvoteComponent from "./app/components/upvote.component";
 import NewCommentComponent from "./app/components/newComment.component";
 
 let router = RouterModule.forRoot([
@@ -34,7 +34,7 @@ let router = RouterModule.forRoot([
         PostDetailComponent,
         PostListComponent,
         CommentComponent,
-        PostUpvoteComponent,
+        UpvoteComponent,
         NewCommentComponent
     ],
     bootstrap: [AppComponent]

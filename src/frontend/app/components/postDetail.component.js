@@ -7,7 +7,7 @@ import PostService from "../services/post.service";
     inputs: ['post'],
     template: `
         <post [data]="post"></post>
-        <postUpvote></postUpvote>
+        <upvote [model]="post" [service]="postService"></upvote>
         <h2>Comentarios:</h2>
         <comment *ngFor="let comment of post.comments" [data]="comment"></comment>
         <newComment></newComment>
