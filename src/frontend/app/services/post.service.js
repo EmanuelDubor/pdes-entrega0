@@ -18,14 +18,14 @@ export default class PostService {
     create(post) {
         this.http.post("/news", JSON.stringify(post), {headers: {'Content-Type': 'application/json'}})
             .toPromise()
-            .then(response => this._posts.push(post))
+            .then(response => this._posts.push(response.json()))
             .catch(err => console.log(err))
     }
 
-    addComment(postId, comment) {
-        return this.http.post(`/news/${postId}/comment`, JSON.stringify(comment), {headers: {'Content-Type': 'application/json'}})
+    addComment(post, comment) {
+        return this.http.post(`/news/${post._id}/comments`, JSON.stringify(comment), {headers: {'Content-Type': 'application/json'}})
             .toPromise()
-            .then(response => this.updatePost(response.json()))
+            .then(response => response.json())
             .catch(err => console.log(err))
     }
 
@@ -36,18 +36,11 @@ export default class PostService {
 
     upvote(post) {
         return this.http.put(`/news/${post._id}/upvote`).toPromise()
-            .then(response => this.updatePost(response.json()))
+            .then(response => response.json())
             .catch(err => console.log(err))
     }
-
-    updatePost(updatedPost) {
-        this._posts.forEach((post, index) => {
-            if (post.id == updatedPost.id)
-                this._posts[index] = updatedPost
-        })
-        return updatedPost
-    }
 }
+
 PostService.parameters = [
     Http
 ]

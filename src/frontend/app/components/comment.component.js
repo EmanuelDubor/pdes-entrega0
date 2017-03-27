@@ -4,9 +4,10 @@ import {Component} from "@angular/core";
     selector: 'comment',
     inputs: ['data'],
     template: `
-        <div class="comment">
-            {{data.body}} <span class="author">{{data.author}}</span>
-        </div>
+        <article class="comment">
+            {{data.body}}
+            <footer class="author">{{data.author}}</footer>
+        </article>
     `
 })
 export default class CommentComponent {
