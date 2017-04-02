@@ -25,7 +25,7 @@ router.get('/news', (req, res, next) => {
 router.post('/news', (req, res, next) => {
     const someNew = new Post(req.body)
     someNew.save()
-        .then(savedNew => res.json(savedNew.id))
+        .then(savedNew => res.json(savedNew))
         .catch(next)
 })
 
